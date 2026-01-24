@@ -5,12 +5,12 @@
 	"build": {
 		// Sets the run context to one level up instead of the .devcontainer folder.
 		"context": "..",
-		// Update the 'dockerFile' property if you aren't using the standard 'Dockerfile' filename.
-		"dockerfile": "../workspace.Dockerfile"
+		// Using standard Dockerfile name
+		"dockerfile": "../Dockerfile"
 	},
   "mounts": [
     "source=${localEnv:HOME}/.ssh,target=/root/.ssh,type=bind,readonly",
-    "source=${localEnv:HOME}/.config/fish,target=/root/.config/fish,type=bind,readonly",
+    "source=${localEnv:HOME}/.config/fish,target=/root/.config/fish,type=bind",
     "source=${localEnv:HOME}/.gitconfig,target=/root/.gitconfig,type=bind,readonly",
     "source=${localEnv:HOME}/.aws,target=/root/.aws,type=bind,readonly",
 		"source=${localEnv:HOME}/.cursor,target=/root/.cursor,type=bind"
@@ -22,8 +22,16 @@
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	// "forwardPorts": [],
 
-	// Uncomment the next line to run commands after the container is created.
-	// "postCreateCommand": "cat /etc/os-release",
+	// Override the CMD from Dockerfile for development (keeps container alive)
+	"overrideCommand": true,
+
+	// Run development setup script after container is created
+	"postCreateCommand": "bash .devcontainer/setup-dev.sh",
+
+	// Set environment variables for fish to use writable location for universal variables
+	"containerEnv": {
+		"XDG_CONFIG_HOME": "/root/.local/config"
+	},
 
 	// Configure tool-specific properties.
 	"customizations": {
