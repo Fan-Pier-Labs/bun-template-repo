@@ -16,7 +16,7 @@ apt-get install -y --no-install-recommends \
     python3 python3-pip \
     bash zsh fish vim nano \
     htop strace \
-    tzdata rar unrar
+    tzdata
 
 # Git LFS init (only if git is available)
 if command -v git &> /dev/null; then
