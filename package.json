@@ -1,0 +1,13 @@
+{
+  "name": "bun-template-repo",
+  "module": "index.ts",
+  "type": "module",
+  "private": true,
+  "devDependencies": {
+    "@types/bun": "latest",
+    "deploy": "https://github.com/fan-Pier-Labs/deploy"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  }
+}
