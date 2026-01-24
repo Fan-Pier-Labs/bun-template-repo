@@ -3,6 +3,9 @@
   "module": "index.ts",
   "type": "module",
   "private": true,
+  "scripts": {
+    "deploy": "python3 ./node_modules/deploy/main.py deploy.yaml"
+  },
   "devDependencies": {
     "@types/bun": "latest",
     "deploy": "https://github.com/fan-Pier-Labs/deploy"
