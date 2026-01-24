@@ -56,6 +56,11 @@ else
 fi
 
 # Install GitHub CLI
+# if you want this to be authorized to your github account and you are on a mac and use fish
+# get a token (gh auth token) and put it at ~/.config/gh/gh_token
+# then set up this alias on your mac and it will work in both mac and container
+# https://github.com/ryanhugh/fish_config/blob/master/gh.fish
+
 if command -v curl &> /dev/null; then
     echo "Installing GitHub CLI..."
     ARCH=$(dpkg --print-architecture)

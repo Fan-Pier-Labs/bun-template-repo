@@ -11,6 +11,7 @@
   "mounts": [
     "source=${localEnv:HOME}/.ssh,target=/root/.ssh,type=bind,readonly",
     "source=${localEnv:HOME}/.config/fish,target=/root/.config/fish,type=bind,readonly",
+    "source=${localEnv:HOME}/.config/gh,target=/root/.local/config/gh,type=bind,readonly",
     "source=${localEnv:HOME}/.gitconfig,target=/root/.gitconfig,type=bind,readonly",
     "source=${localEnv:HOME}/.aws,target=/root/.aws,type=bind,readonly",
 		"source=${localEnv:HOME}/.cursor,target=/root/.cursor,type=bind"
@@ -32,7 +33,7 @@
 	"containerEnv": {
 		"XDG_CONFIG_HOME": "/root/.local/config"
 	},
-
+	
 	// Configure tool-specific properties.
 	"customizations": {
 		"vscode": {
