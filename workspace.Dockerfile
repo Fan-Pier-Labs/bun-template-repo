@@ -34,16 +34,21 @@ RUN git lfs install || true
 RUN curl -fsSL https://bun.sh/install | bash
 ENV PATH="/root/.bun/bin:${PATH}"
 
+# Refresh Ubuntu GPG keys to avoid signature errors
+RUN apt-get update --allow-releaseinfo-change || true \
+  && apt-get install -y --no-install-recommends --reinstall ca-certificates || true \
+  && rm -rf /var/lib/apt/lists/*
+
 # ---- Docker CLI (optional but useful if you mount docker socket) ----
 # If you don't mount /var/run/docker.sock, this is harmless.
-RUN install -m 0755 -d /etc/apt/keyrings \
-  && curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /etc/apt/keyrings/docker.gpg \
-  && chmod a+r /etc/apt/keyrings/docker.gpg \
-  && echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
-     $(. /etc/os-release && echo ${VERSION_CODENAME}) stable" > /etc/apt/sources.list.d/docker.list \
-  && apt-get update \
-  && apt-get install -y --no-install-recommends docker-ce-cli \
-  && rm -rf /var/lib/apt/lists/*
+# RUN install -m 0755 -d /etc/apt/keyrings \
+#   && curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /etc/apt/keyrings/docker.gpg \
+#   && chmod a+r /etc/apt/keyrings/docker.gpg \
+#   && echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+#      $(. /etc/os-release && echo ${VERSION_CODENAME:-noble}) stable" > /etc/apt/sources.list.d/docker.list \
+#   && apt-get update --allow-releaseinfo-change \
+#   && apt-get install -y --no-install-recommends docker-ce-cli \
+#   && rm -rf /var/lib/apt/lists/*
 
 # Set fish as default shell for root
 RUN usermod -s /usr/bin/fish root
