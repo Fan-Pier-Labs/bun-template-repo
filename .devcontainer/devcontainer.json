@@ -10,7 +10,7 @@
 	},
   "mounts": [
     "source=${localEnv:HOME}/.ssh,target=/root/.ssh,type=bind,readonly",
-    "source=${localEnv:HOME}/.config/fish,target=/root/.config/fish,type=bind",
+    "source=${localEnv:HOME}/.config/fish,target=/root/.config/fish,type=bind,readonly",
     "source=${localEnv:HOME}/.gitconfig,target=/root/.gitconfig,type=bind,readonly",
     "source=${localEnv:HOME}/.aws,target=/root/.aws,type=bind,readonly",
 		"source=${localEnv:HOME}/.cursor,target=/root/.cursor,type=bind"
