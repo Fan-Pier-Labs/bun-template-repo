@@ -16,7 +16,7 @@ apt-get install -y --no-install-recommends \
     python3 python3-pip \
     bash zsh fish vim nano \
     htop strace \
-    tzdata
+    tzdata rar unrar
 
 # Git LFS init (only if git is available)
 if command -v git &> /dev/null; then
@@ -53,6 +53,30 @@ if command -v curl &> /dev/null && command -v unzip &> /dev/null; then
     fi
 else
     echo "Warning: curl or unzip not available, skipping AWS CLI installation"
+fi
+
+# Install GitHub CLI
+if command -v curl &> /dev/null; then
+    echo "Installing GitHub CLI..."
+    ARCH=$(dpkg --print-architecture)
+    if [ "$ARCH" = "amd64" ]; then
+        GH_ARCH="amd64"
+    elif [ "$ARCH" = "arm64" ]; then
+        GH_ARCH="arm64"
+    else
+        echo "Unsupported architecture: $ARCH, skipping GitHub CLI"
+        GH_ARCH=""
+    fi
+    
+    if [ -n "$GH_ARCH" ]; then
+        curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg && \
+        chmod go+r /usr/share/keyrings/githubcli-archive-keyring.gpg && \
+        echo "deb [arch=$GH_ARCH signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" > /etc/apt/sources.list.d/github-cli.list && \
+        apt-get update -qq && \
+        apt-get install -y --no-install-recommends gh || echo "GitHub CLI installation failed, continuing..."
+    fi
+else
+    echo "Warning: curl not available, skipping GitHub CLI installation"
 fi
 
 # Set fish as default shell
