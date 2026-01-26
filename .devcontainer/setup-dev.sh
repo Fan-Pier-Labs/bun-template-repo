@@ -16,7 +16,7 @@ apt-get install -y --no-install-recommends \
     python3 python3-pip \
     bash zsh fish vim nano \
     htop strace \
-    tzdata
+    tzdata sudo
 
 # Git LFS init (only if git is available)
 if command -v git &> /dev/null; then
@@ -109,6 +109,10 @@ if command -v fish &> /dev/null; then
 else
     echo "Warning: fish not found, skipping shell setup"
 fi
+
+# Install Python packages
+echo "Installing Python packages..."
+pip3 install --no-cache-dir pyyaml boto3
 
 # Install dev dependencies (not production deps)
 echo "Installing development dependencies..."
