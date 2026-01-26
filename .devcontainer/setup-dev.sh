@@ -111,6 +111,7 @@ else
 fi
 
 # Install Python packages
+# These are needed for the deploy script
 echo "Installing Python packages..."
 pip3 install --no-cache-dir pyyaml boto3
 
