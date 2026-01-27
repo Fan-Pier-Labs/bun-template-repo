@@ -4,7 +4,7 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "deploy": "python3 ./node_modules/deploy/main.py deploy.yaml",
+    "deploy": "python3 ./node_modules/deploy/main.py --configdeploy.yaml",
     "type-check": "bun --bun tsc --noEmit"
   },
   "devDependencies": {
