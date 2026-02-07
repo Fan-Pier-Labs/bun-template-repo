@@ -11,6 +11,7 @@ task:
   memory: 2048
   spot: true
   replicas: 1
+  ephemeral_storage: 21
 
 # Change this to true after you set the name of this project. 
 allow_create: false
