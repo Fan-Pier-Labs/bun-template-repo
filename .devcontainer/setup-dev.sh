@@ -16,7 +16,7 @@ apt-get install -y --no-install-recommends \
     python3 python3-pip \
     bash zsh fish vim nano \
     htop strace \
-    tzdata sudo
+    tzdata sudo less docker.io 
 
 # Git LFS init (only if git is available)
 if command -v git &> /dev/null; then
@@ -115,7 +115,13 @@ fi
 echo "Installing Python packages..."
 pip3 install --no-cache-dir pyyaml boto3 --break-system-packages
 
+# Install Node.js (for npx/npm)
+echo "Installing Node.js..."
+curl -fsSL https://deb.nodesource.com/setup_lts.x | bash - && \
+apt-get install -y --no-install-recommends nodejs || echo "Node.js installation failed, continuing..."
+
 # Install dev dependencies (not production deps)
+# Bun is already installed in the base image (oven/bun:latest)
 echo "Installing development dependencies..."
 bun install
 
