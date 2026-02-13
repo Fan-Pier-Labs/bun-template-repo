@@ -1,0 +1,12 @@
+---
+description: AWS CLI access configuration
+alwaysApply: true
+---
+
+# AWS Access
+
+When you need AWS access, use the `fanpierlabs` profile:
+
+```sh
+aws --profile fanpierlabs <command>
+```

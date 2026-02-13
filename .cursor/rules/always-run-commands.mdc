@@ -1,0 +1,15 @@
+---
+description: Always run commands and complete tasks autonomously
+alwaysApply: true
+---
+
+# Always Run Commands
+
+- Always run commands yourself. Never stop and ask the user to run them unless the user has explicitly said not to run commands.
+- Keep going until the task is fully complete. Run commands, analyze output, fix errors, and repeat until done.
+- Do not stop halfway to ask for confirmation. Just do the work.
+
+# Foreground vs Background
+
+- Run commands in the foreground by default. Wait for them to finish before continuing.
+- Only run commands in the background when you genuinely need multiple concurrent processes (e.g., a dev server running locally while you make requests to it).
