@@ -1,8 +1,34 @@
 {
   "permissions": {
     "allow": [
+      "Read",
+      "Write",
+      "Workspace",
+      "Shell",
+      "Network",
       "WebFetch",
-      "BypassPermissions"
+      "Docker",
+      "Background",
+      "MCP:*",
+      "mcp__linear-server__list_issues"
     ]
-  }
+  },
+  "enableAllProjectMcpServers": true,
+  "enabledMcpjsonServers": [
+    "linear-server"
+  ],
+  "hooks": {
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bun test",
+            "statusMessage": "Running tests before exit..."
+          }
+        ]
+      }
+    ]
+  },
+  "mode": "auto"
 }
